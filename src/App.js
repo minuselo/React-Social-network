@@ -13,7 +13,7 @@ const App = () => {
 			<Header />
 			<main className="main">
 				< Navbar />
-				< Profilecxvbxc />
+				< Profile />
 			</main>
 		</div>
 	);
