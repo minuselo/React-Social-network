@@ -14,6 +14,7 @@ const App = () => {
 			<main className="main">
 				< Navbar />
 				< Profile />
+				< Profile />
 			</main>
 		</div>
 	);
