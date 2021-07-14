@@ -13,8 +13,9 @@ const App = () => {
 			<Header />
 			<main className="main">
 				< Navbar />
+				< Navbar />
 				< Profile />
-				< Profile />
+
 			</main>
 		</div>
 	);
