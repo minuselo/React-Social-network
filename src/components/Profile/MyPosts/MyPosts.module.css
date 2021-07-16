@@ -1,0 +1,7 @@
+.content {
+	width: 100%;
+	position: relative;
+}
+.contentImage img {
+	max-width: 100%;
+}
