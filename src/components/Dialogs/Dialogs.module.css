@@ -1,1 +1,56 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 3fr 6fr;
+    background-color: #f7f7f2;
+    padding: 0px 25px;
 
+}
+
+.dialogs h2 {
+    margin: 0;
+    color: #40403e;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.contactItem{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    background-color: #fff;
+    margin-bottom: 15px;
+    width: 80%;
+}
+.contactItem a{
+    margin: 0;
+    font-weight: 600;
+}
+.contactItem .contactImg {
+    background-color: #dbdead;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    margin-right: 30px;
+}
+.contacts{
+    border-right: solid 1px #40403e;
+}
+.massages{
+    margin: 20px 0px 0px 20px;
+}
+.massage{
+    margin-bottom: 20px;
+}
+.massage h4{
+    margin: 0;
+}
+.massage p{
+    margin: 5px 0px 0px 0px;
+    background-color: #fff;
+    max-width: 90%;
+    padding: 10px;
+    border-radius: 20px;
+    color: #878780;
+}

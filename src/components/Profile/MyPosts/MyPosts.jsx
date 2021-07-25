@@ -1,17 +1,19 @@
 import React from 'react';
 import s from './MyPosts.module.css';
-import Post from './Post/Post';
 
-const MyPosts = () => {
-	return <div>
-		My posts
-		<div>
-			new posts
+
+
+
+
+
+const MyPosts = (props) => {
+	return <div className={s.posts}>
+		<h3>Записи</h3>
+		<div className={s.newPost}>
+			<textarea name="" id="" cols="30" rows="10" placeholder="Напишите ваш комментарий"></textarea>
+			<button>Добавить</button>
 		</div>
-		< Post postTxt="Пост под номером один" likeCount="5" />
-		< Post postTxt="Пост про что-то там" likeCount="14" />
-		< Post postTxt="Пост про ыыыыы" likeCount="168" />
-
+		{props.PostsElements}
 	</div>
 }
 

@@ -5,3 +5,25 @@
 .contentImage img {
 	max-width: 100%;
 }
+.posts{
+	margin: 25px 10px 30px 25px;
+}
+.newPost textarea{
+	resize: none;
+	width: 50%;
+	height: 100px;
+	margin-bottom: 15px;
+
+}
+.newPost button{
+	display: block;
+	margin-bottom: 20px;
+	width: 100px;
+	height: 30px;
+	border-radius: 10px;
+	border: none;
+	background-color: #87f597;
+	color: #fff;
+	font-weight: 600;
+	font-size: 14px;
+}

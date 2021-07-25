@@ -1,6 +1,48 @@
 .menu {
-	width: 100%;
+    width: 100%;
 }
+
+.menu ul {
+    width: 80%;
+    height: auto;
+    background-color: #f7f7f2;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 20px 0px 100px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .item {
-	list-style-type: none;
+    list-style-type: none;
+    background-color: #fff;
+    width: 45%;
+    margin-bottom: 20px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item .icon {
+    background-color: #dbdead;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+}
+
+.item a {
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #40403e;
+    font-weight: 700;
+}
+
+.item a.active {
+    color: #878780;
 }

@@ -1,0 +1,19 @@
+
+.contentImage img {
+	width: 250px;
+	height: 250px;
+	object-fit: cover;
+	border-radius: 150px;
+}
+.contentProfile{
+	display: flex;
+	margin: 25px 10px 30px 25px;
+}
+.profileDescription{
+	margin-left: 10%;
+	max-width: 70%;
+}
+
+.profileDescription h2{
+	margin-bottom: 50px;
+}

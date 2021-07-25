@@ -1,7 +1,11 @@
 .content {
 	width: 100%;
 	position: relative;
+	background-color: #f7f7f2;
 }
 .contentImage img {
-	max-width: 100%;
+	width: 250px;
+	height: 250px;
+	object-fit: cover;
+	border-radius: 150px;
 }
