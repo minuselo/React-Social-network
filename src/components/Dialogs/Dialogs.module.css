@@ -39,6 +39,9 @@
 }
 .massages{
     margin: 20px 0px 0px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .massage{
     margin-bottom: 20px;
@@ -53,4 +56,32 @@
     padding: 10px;
     border-radius: 20px;
     color: #878780;
+}
+.massageField{
+
+}
+.sendField{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.sendField textarea{
+    resize: none;
+    width: 80%;
+    height: 50px;
+    border-radius: 10px ;
+    font-size: 14px;
+    font-weight: 500;
+    outline: none;
+}
+.sendField button{
+    margin-left: 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    background: #87f597;
+    border: none;
+    padding: 10px;
+    border-radius: 25px ;
+    color: #fff;
+    font-weight: 600;
 }

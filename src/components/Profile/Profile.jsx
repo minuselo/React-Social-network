@@ -8,7 +8,7 @@ import Post from "./MyPosts/Post/Post";
 const Profile = (props) => {
     return <section className={s.content}>
         <ProfileInfo/>
-        <MyPosts PostsElements={props.PostsElements}/>
+        <MyPosts Posts={props.Posts.Posts} addPost={props.addPost}/>
     </section>
 }
 
