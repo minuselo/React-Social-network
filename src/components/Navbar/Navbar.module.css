@@ -18,7 +18,7 @@
 .item {
     list-style-type: none;
     background-color: #fff;
-    width: 45%;
+    width: 55%;
     margin-bottom: 20px;
     padding: 10px 20px 10px 20px;
     border-radius: 25px;
@@ -45,4 +45,11 @@
 
 .item a.active {
     color: #878780;
+}
+.link{
+    width: 90%;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
 }

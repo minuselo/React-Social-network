@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import ContactItem from "./DialogItem/ContactItem";
 import Message from "./Message/Message";
-import {AddMessageActionCreator, UpdateTextMessageActionCreator} from "../../redux/messagesReducer";
 
 
 
@@ -13,13 +12,13 @@ const Dialogs = (props) => {
     let MessagesElements=props.stateDialogs.Messages.map(el => <Message messageText={el.message} messageAuthor={el.author}/> )
     let newMessageText=React.createRef();
     let addNewMessage=()=>{
-    props.dispatch(AddMessageActionCreator());
+    props.addMessage();
     }
 
 
     let MessageTextUpdate = ()=>{
     let NewText=newMessageText.current.value;
-    props.dispatch(UpdateTextMessageActionCreator(NewText));
+    props.MessageTextUpdate(NewText);
     }
 
 
@@ -36,7 +35,7 @@ const Dialogs = (props) => {
                     {MessagesElements}
                 </div>
                 <div className={s.sendField}>
-                    <textarea onChange={MessageTextUpdate} value={props.stateDialogs.NewMessageText} name="" id="" cols="30" rows="10" ref={newMessageText}/>
+                    <textarea onChange={MessageTextUpdate} value={props.NewMessageText} name="" id="" cols="30" rows="10" ref={newMessageText}/>
                 <button onClick={addNewMessage}>Отправить</button>
                 </div>
             </div>
