@@ -1,0 +1,43 @@
+.form {
+    background-color: #f7f7f2;
+    display: flex;
+    justify-content: center;
+}
+
+.form form {
+    margin: 0 0 0 25px
+}
+
+.form h3 {
+    text-align: center;
+}
+
+.form input {
+    font-size: 16px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.errored {
+    color: red;
+    padding: 0 0 0 5px;
+}
+.remember{
+    display: flex;
+    align-items: flex-start;
+}
+.remember span {
+    margin-left: 5px;
+}
+.form button{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: #87f597;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 auto;
+    display: block;
+}

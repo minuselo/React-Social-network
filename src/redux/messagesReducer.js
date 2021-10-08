@@ -20,8 +20,7 @@ let initialState={
             id: 2,
             message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit.t',
             author: 'Me'
-        }],
-    NewMessageText: ''
+        }]
 }
 
 
@@ -32,10 +31,9 @@ const messagesReducer=(state=initialState,action)=>{
                 ...state,
                 Messages:[...state.Messages,{
                     id: 3,
-                    message: state.NewMessageText,
+                    message: action.message,
                     author: 'Me'
-                }],
-                NewMessageText:''
+                }]
             };
         }
         case UPDATE_TEXT_MESSAGE:{
@@ -49,13 +47,10 @@ const messagesReducer=(state=initialState,action)=>{
     }
 }
 
-export const AddMessageActionCreator=()=> ({
-    type: ADD_MESSAGE
+export const AddMessageActionCreator=(message)=> ({
+    type: ADD_MESSAGE,
+    message
 })
 
-export const UpdateTextMessageActionCreator=(messageText)=> ({
-    type: UPDATE_TEXT_MESSAGE,
-    messageText:messageText
-})
 
 export default messagesReducer;

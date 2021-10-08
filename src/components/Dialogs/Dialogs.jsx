@@ -2,25 +2,45 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import ContactItem from "./DialogItem/ContactItem";
 import Message from "./Message/Message";
+import {Redirect} from "react-router-dom";
+import {Field, Form} from "react-final-form";
 
 
+let validate = (e) => {
+}
+
+
+const MessageForm = (props) => {
+    return (
+        <Form
+            onSubmit={props.addNewMessage}
+            validate={validate}
+            render={({handleSubmit}) => (
+                <form className={s.sendField} onSubmit={handleSubmit}>
+                    <Field name="newMessageText" component="textarea"  cols="30"
+                           rows="10"/>
+                    <button type="submit">Отправить</button>
+                </form>
+            )}
+        />
+    );
+
+}
 
 
 const Dialogs = (props) => {
 
-    let UsersElements= props.stateDialogs.Users.map(el => < ContactItem name={el.name} contactId={el.id}/>)
-    let MessagesElements=props.stateDialogs.Messages.map(el => <Message messageText={el.message} messageAuthor={el.author}/> )
-    let newMessageText=React.createRef();
-    let addNewMessage=()=>{
-    props.addMessage();
+    if (!props.isAutorized) {
+        return <Redirect to='/login'/>;
     }
 
 
-    let MessageTextUpdate = ()=>{
-    let NewText=newMessageText.current.value;
-    props.MessageTextUpdate(NewText);
+    let UsersElements = props.stateDialogs.Users.map(el => < ContactItem name={el.name} contactId={el.id}/>)
+    let MessagesElements = props.stateDialogs.Messages.map(el => <Message messageText={el.message}
+                                                                          messageAuthor={el.author}/>)
+    let addNewMessage = (message) => {
+        props.addMessage(message.newMessageText);
     }
-
 
 
     return (
@@ -34,10 +54,9 @@ const Dialogs = (props) => {
                 <div className={s.massageField}>
                     {MessagesElements}
                 </div>
-                <div className={s.sendField}>
-                    <textarea onChange={MessageTextUpdate} value={props.NewMessageText} name="" id="" cols="30" rows="10" ref={newMessageText}/>
-                <button onClick={addNewMessage}>Отправить</button>
-                </div>
+
+                <MessageForm addNewMessage={addNewMessage}/>
+
             </div>
 
         </div>

@@ -1,5 +1,12 @@
+import * as axios from "axios";
+import {ApiProfile} from "../API/api";
+
 const ADD_POST = 'ADD-POST';
-const UPDATE_TEXT = 'UPDATE-TEXT';
+const SET_PROFILE = 'SET-PROFILE';
+const SET_STATUS = 'SET_STATUS';
+
+
+
 
 let initialState = {
     Posts: [
@@ -7,7 +14,8 @@ let initialState = {
         {id: 1, text: "Пост про что-то там", likeCount: 14},
         {id: 2, text: "Пост про ыыыыы", likeCount: 165}
     ],
-    NewPostText: ''
+    Profile:null,
+    status:''
 }
 
 
@@ -18,30 +26,80 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 Posts:[...state.Posts,{
                     id: 5,
-                    text: state.NewPostText,
+                    text: action.values,
                     likeCount: 0
-                }],
-                NewPostText:''
+                }]
             };
         }
-        case UPDATE_TEXT: {
+        case SET_PROFILE:{
             return {
                 ...state,
-                NewPostText:action.NewText
-            };
+                Profile: action.profile
+            }
+        }
+        case SET_STATUS:{
+            return {
+                ...state,
+                status: action.status
+            }
         }
         default:
             return state;
     }
 }
 
-export const AddPostActionCreator = () => ({
-    type: ADD_POST
+export const AddPostActionCreator = (values) => ({
+    type: ADD_POST,
+    values
 })
 
-export const UpdateTextActionCreator = (NewText) => ({
-    type: UPDATE_TEXT,
-    NewText: NewText
+
+export const setProfile = (profile) => ({
+    type: SET_PROFILE,
+    profile
 })
+export const setStatus=(status)=>({
+    type:SET_STATUS,
+    status
+})
+
+
+
+
+
+export const ProfileSet=(userIdParam,userDefaultId)=>{
+    return (dispatch)=>{
+        let userId=userIdParam;
+        if (!userId){
+            userId=userDefaultId;
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+            dispatch(setProfile(response.data));
+        });
+    }
+}
+
+export const getStatus=(userIdParam,userDefaultId)=>{
+    return (dispatch)=>{
+        let userId=userIdParam;
+        if (!userId){
+            userId=userDefaultId;
+        }
+    ApiProfile.getStatus(userId).then(response=>{
+        dispatch(setStatus(response.data));
+    });
+    }
+}
+export const updateStatus=(status)=>{
+    return (dispatch)=>{
+    ApiProfile.updateStatus(status).then(
+      response=>{
+          if (response.data.resultCode===0){
+              dispatch(setStatus(status));
+          }
+      }
+    );
+    }
+}
 
 export default profileReducer;

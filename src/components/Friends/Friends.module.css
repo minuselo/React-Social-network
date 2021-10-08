@@ -29,3 +29,36 @@
     border: none;
     border-radius: 25px ;
 }
+.Friends ul{
+    display: flex;
+    max-width: 85%;
+    flex-wrap: wrap;
+}
+.Friends li{
+    list-style-type: none;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    vert-align: middle;
+    background-color: #31af91;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.Friends li.activePage{
+    color: black;
+}
+.FriendLink{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.FriendLink h4{
+    margin-left: 40%;
+}

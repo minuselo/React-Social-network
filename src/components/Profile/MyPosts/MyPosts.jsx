@@ -1,28 +1,44 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {Field, Form} from "react-final-form";
+
+
+let validate = (props) => {
+}
+
+const NewPostTxtForm=(props)=>{
+    return(
+		<Form
+			onSubmit={props.addNewPost}
+			validate={validate}
+			render={({ handleSubmit }) => (
+				<form onSubmit={handleSubmit}>
+					<Field name="newPostTxt" component="textarea" placeholder="Напишите ваш комментарий" cols="30" rows="10"/>
+					<button type="submit">Добавить</button>
+				</form>
+			)}
+		/>
+	);
+}
+
 
 
 
 
 const MyPosts = (props) => {
 	let PostsElements= props.Posts.map(el=>< Post postTxt={el.text} likeCount={el.likeCount} />)
-	let newPostTxt=React.createRef();
 
-	let addNewPost=()=>{
-	props.addPost();
+	let addNewPost=(values)=>{
+	props.addPost(values.newPostTxt);
 	}
 
-	let TextChange=()=>{
-	let NewText=newPostTxt.current.value;
-	props.textChange(NewText);
-	}
+
 
 	return <div className={s.posts}>
 		<h3>Записи</h3>
 		<div className={s.newPost}>
-			<textarea onChange={TextChange} value={props.NewPostText} ref={newPostTxt} name="" id="" cols="30" rows="10" placeholder="Напишите ваш комментарий"/>
-			<button onClick={addNewPost}>Добавить</button>
+            <NewPostTxtForm addNewPost={addNewPost} />
 		</div>
 		{PostsElements}
 	</div>

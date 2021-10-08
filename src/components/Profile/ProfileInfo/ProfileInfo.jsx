@@ -1,18 +1,23 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import Preloader from '../../common/preloader/Preloader';
+import userDefaulImg from './../../../assets/img/user.png'
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if (!props.profile){
+        return <Preloader/>
+    }
     return <div className={s.contentProfile}>
-        <div className={s.contentImage}><img src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
-                                             alt=""/></div>
+        <div className={s.contentImage}>{props.profile.photos.small!=null?
+            <img src={props.profile.photos.small} alt=""/>:
+            <img src={userDefaulImg} alt=""/>
+        }
+        </div>
         <div className={s.profileDescription}>
-            <h2>User Name</h2>
+            <h2>{props.profile.fullName}</h2>
             <h4>О себе:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam at dolorem expedita facere
-                facilis fugiat, itaque iure maiores
-                nisi odio optio praesentium quaerat quo repellat vel vero voluptates.
-                Accusantium adipisci corporis culpa, deserunt dolore eius ex facere iusto molestiae, mollitia odit
-                porro quaerat quas repudiandae sequi. Consequuntur maiores, modi?</p>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
         </div>
     </div>
 

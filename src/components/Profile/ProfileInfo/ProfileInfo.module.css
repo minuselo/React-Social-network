@@ -11,7 +11,7 @@
 }
 .profileDescription{
 	margin-left: 10%;
-	max-width: 70%;
+	min-width: 50%;
 }
 
 .profileDescription h2{
