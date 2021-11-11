@@ -6,6 +6,13 @@ import {
     ToggleFriend
 } from '../../redux/friendsReducer';
 import Friends from './Friends';
+import {
+    getCountData, getFollowIsFetchingData,
+    getFriendsData,
+    getIsLoadingData,
+    getPageNumberData,
+    getPageSizeData
+} from "../../redux/friendsSelector";
 
 class FriendsAPI extends React.Component {
 
@@ -38,12 +45,12 @@ class FriendsAPI extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        Friends: state.friendsPage.Friends,
-        pageSize: state.friendsPage.pageSize,
-        pageNumber: state.friendsPage.pageNumber,
-        count: state.friendsPage.count,
-        isLoading: state.friendsPage.isLoading,
-        followIsFetching: state.friendsPage.followIsFetching
+        Friends: getFriendsData(state),
+        pageSize: getPageSizeData(state),
+        pageNumber: getPageNumberData(state),
+        count: getCountData(state),
+        isLoading: getIsLoadingData(state),
+        followIsFetching: getFollowIsFetchingData(state)
     }
 }
 

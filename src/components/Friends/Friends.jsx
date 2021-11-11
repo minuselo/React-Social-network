@@ -1,18 +1,11 @@
 import React from 'react';
 import s from "./Friends.module.css";
-import user from "../../assets/img/user.png";
 import Preloader from "../common/preloader/Preloader";
-import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {Api} from "../../API/api";
+import Pagination from "../common/Pagination/Pagination";
+import Friend from "./Friend";
 
 
 let Friends = (props) => {
-    let pagesCount = Math.ceil(props.count / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
 
 
     return (
@@ -20,7 +13,9 @@ let Friends = (props) => {
         <div className={s.Friends}>
             {props.isLoading ? <Preloader/> : null}
             {props.Friends.map(el => {
-                    return <div className={s.Friend}>
+                    return <Friend el={el} followIsFetching={props.followIsFetching}
+                                   followDeleteFriend={props.followDeleteFriend}/>
+                    /*<div className={s.Friend}>
                         <NavLink className={s.FriendLink} to={`/profile/${el.id}`}>
                             <img src={el.imageUrl != null ? el.imageUrl : user} alt=""/>
                             <div>
@@ -35,17 +30,11 @@ let Friends = (props) => {
                             <button disabled={props.followIsFetching.some(id => id == el.id)} onClick={() => {
                                 props.followPostFriend(el.id);
                             }}>Добавить в друзья</button>}
-                    </div>
+                    </div>*/
                 }
             )}
 
-            <ul>
-                {pages.map(el => {
-                    return <li onClick={() => {
-                        props.setNewPageNumber(el)
-                    }} className={el === props.pageNumber && s.activePage}>{el}</li>
-                })}
-            </ul>
+            <Pagination count={props.count} pageSize={props.pageSize} setNewPageNumber={props.setNewPageNumber} pageNumber={props.pageNumber}/>
         </div>
     );
 }

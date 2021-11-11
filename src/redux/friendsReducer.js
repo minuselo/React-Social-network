@@ -94,39 +94,36 @@ export const isFetchingFollow = (isFetching, userId) => ({
 
 
 export const getUsers = (pageNumber, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(SetPageNumber(pageNumber));
         dispatch(isLoadingData(true));
-        Api.getUser(pageNumber, pageSize).then(data => {
-            dispatch(isLoadingData(false));
-            dispatch(AddFriends(data.items));
-            dispatch(SetFriendsCount(data.totalCount));
-        });
+        let data = await Api.getUser(pageNumber, pageSize);
+        dispatch(isLoadingData(false));
+        dispatch(AddFriends(data.items));
+        dispatch(SetFriendsCount(data.totalCount));
     }
+}
+
+
+let followFlow = async (dispatch, userID, followMethod) => {
+    dispatch(isFetchingFollow(true, userID));
+    let data = await followMethod(userID);
+    if (data.resultCode == 0) {
+        dispatch(ToggleFriend(userID));
+    }
+    dispatch(isFetchingFollow(false, userID));
 }
 
 
 export const followDeleteFriend = (userID) => {
-    return (dispatch)=>{
-        dispatch(isFetchingFollow(true,userID));
-        Api.followDelete(userID).then(data => {
-            if (data.resultCode == 0) {
-                dispatch(ToggleFriend(userID));
-            }
-            dispatch(isFetchingFollow(false, userID));
-        });
+    return async (dispatch) => {
+        followFlow(dispatch, userID, Api.followDelete.bind(Api));
     }
 }
 
 export const followPostFriend = (userID) => {
-    return (dispatch)=>{
-        dispatch(isFetchingFollow(true,userID));
-        Api.followPost(userID).then(data => {
-            if (data.resultCode == 0) {
-                dispatch(ToggleFriend(userID));
-            }
-            dispatch(isFetchingFollow(false, userID));
-        });
+    return async (dispatch) => {
+        followFlow(dispatch, userID, Api.followPost.bind(Api));
     }
 }
 

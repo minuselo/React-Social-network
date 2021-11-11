@@ -26,7 +26,7 @@ const NewPostTxtForm=(props)=>{
 
 
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
 	let PostsElements= props.Posts.map(el=>< Post postTxt={el.text} likeCount={el.likeCount} />)
 
 	let addNewPost=(values)=>{
@@ -42,6 +42,6 @@ const MyPosts = (props) => {
 		</div>
 		{PostsElements}
 	</div>
-}
+})
 
 export default MyPosts;

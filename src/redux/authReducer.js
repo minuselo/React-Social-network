@@ -44,40 +44,36 @@ export const SetUserLoginError = (error) => ({
 
 
 export const authenticationUser = () => {
-    return (dispatch) => {
-        Api.authRequest().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(SetUserLoginData(data.data.id, data.data.email,
-                    data.data.login, true));
-            }
-        });
+    return async (dispatch) => {
+        let data = await Api.authRequest();
+        if (data.resultCode === 0) {
+            dispatch(SetUserLoginData(data.data.id, data.data.email,
+                data.data.login, true));
+        }
     }
 }
 
 export const login = (email, password, rememberMe) => {
-    return (dispatch) => {
-        ApiLogin.loginUser(email, password, rememberMe).then(
-            response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(authenticationUser());
-                    dispatch(SetUserLoginError(false));
-                } else {
-                    dispatch(SetUserLoginError(true));
-                }
-            }
-        )
+    return async (dispatch) => {
+        let response = await ApiLogin.loginUser(email, password, rememberMe);
+        if (response.data.resultCode === 0) {
+            let promise = dispatch(authenticationUser());
+            promise.then(() => {
+                dispatch(SetUserLoginError(false));
+            })
+
+        } else {
+            dispatch(SetUserLoginError(true));
+        }
     }
 }
 
 export const logout = () => {
-    return (dispatch) => {
-        ApiLogin.unloginUser().then(
-            response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(SetUserLoginData(null, null, null, false));
-                }
-            }
-        )
+    return async (dispatch) => {
+        let response = await ApiLogin.unloginUser();
+        if (response.data.resultCode === 0) {
+            dispatch(SetUserLoginData(null, null, null, false));
+        }
     }
 }
 
